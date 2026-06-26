@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nisha Kini | Business Analytics & GTM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Columbia Color Tokens ── */
+    :root {
+      --navy:   #003366;
+      --blue:   #75AADB;
+      --blue-light: #E8F1FA;
+      --gold:   #C4A35A;
+      --white:  #FFFFFF;
+      --gray-50: #F8F9FB;
+      --gray-100: #EEF1F6;
+      --gray-400: #8A96A8;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,51,102,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,51,102,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-700);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(0,51,102,0.97);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.80);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #004080 60%, #005599 100%);
+      display: flex;
+      align-items: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(117,170,219,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -5%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(117,170,219,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 4px solid var(--blue);
+      box-shadow: 0 0 0 8px rgba(117,170,219,0.18), var(--shadow-lg);
+      object-fit: cover;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .hero-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--blue-light);
+      border-radius: 50%;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(117,170,219,0.20);
+      border: 1px solid rgba(117,170,219,0.40);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+    .hero-summary {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.80);
+      max-width: 540px;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #8DBDE6; transform: translateY(-1px); }
+    .btn-outline {
+      border: 2px solid rgba(117,170,219,0.50);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--blue); background: rgba(117,170,219,0.10); }
+
+    /* ── Section Wrapper ── */
+    section { padding: 80px 5%; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--navy);
+      margin-bottom: 3rem;
+    }
+    .section-title span {
+      position: relative;
+    }
+    .section-title span::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    /* ── Experience ── */
+    #experience { background: var(--gray-50); }
+    .timeline { display: flex; flex-direction: column; gap: 2rem; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .tl-meta {
+      text-align: right;
+      padding-top: 0.25rem;
+    }
+    .tl-date {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .tl-company-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--navy);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+    .tl-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem; top: 1.35rem;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .tl-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .tl-org {
+      font-size: 0.9rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .tl-bullets { list-style: none; }
+    .tl-bullets li {
+      font-size: 0.9rem;
+      color: var(--gray-700);
+      padding-left: 1.1rem;
+      position: relative;
+      margin-bottom: 0.45rem;
+      line-height: 1.6;
+    }
+    .tl-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-size: 0.8rem;
+    }
+
+    /* ── Projects ── */
+    #projects { background: var(--white); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .project-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .project-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      background: var(--blue-light);
+      color: var(--navy);
+      letter-spacing: 0.03em;
+    }
+    .tag-gold {
+      background: rgba(196,163,90,0.15);
+      color: #8B6914;
+    }
+
+    /* ── Skills ── */
+    #skills { background: var(--navy); }
+    #skills .section-label { color: var(--blue); }
+    #skills .section-title { color: var(--white); }
+    #skills .section-title span::after { background: var(--blue); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(117,170,219,0.20);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-pill {
+      font-size: 0.80rem;
+      color: rgba(255,255,255,0.88);
+      background: rgba(117,170,219,0.14);
+      border: 1px solid rgba(117,170,219,0.25);
+      padding: 0.3rem 0.75rem;
+      border-radius: 99px;
+    }
+
+    /* ── Education ── */
+    #education { background: var(--gray-50); }
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .edu-card {
+      background: var(--white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .edu-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .edu-school {
+      font-size: 0.9rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .edu-dates { font-size: 0.82rem; color: var(--gray-400); }
+    .edu-courses {
+      margin-top: 0.75rem;
+      font-size: 0.82rem;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* ── Publications ── */
+    #publications { background: var(--white); }
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card {
+      background: var(--gray-50);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .pub-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .pub-venue {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+    }
+    .pub-link {
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      border: 2px solid var(--navy);
+      padding: 0.35rem 1rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .pub-link:hover { background: var(--navy); color: var(--white); }
+
+    /* ── Contact ── */
+    #contact { background: linear-gradient(135deg, var(--navy), #004080); }
+    #contact .section-label { color: var(--blue); }
+    #contact .section-title { color: var(--white); }
+    #contact .section-title span::after { background: var(--blue); }
+    .contact-inner {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .contact-text {
+      flex: 1;
+      min-width: 260px;
+    }
+    .contact-desc {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      max-width: 420px;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: var(--blue); }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(117,170,219,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .availability-card {
+      background: rgba(117,170,219,0.14);
+      border: 1px solid rgba(117,170,219,0.30);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      min-width: 260px;
+    }
+    .avail-dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: #4ADE80;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .avail-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .avail-item {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .avail-item::before { content: '✓'; color: var(--blue); font-weight: 700; }
+
+    /* ── Footer ── */
+    footer {
+      background: #001F3F;
+      text-align: center;
+      padding: 1.5rem 5%;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.40);
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; text-align: center; gap: 2.5rem; }
+      .hero-cta { justify-content: center; }
+      .hero-summary { margin: 0 auto 2rem; }
+      .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .tl-meta { text-align: left; }
+      .tl-card::before { display: none; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-logo">Nisha <span>Kini</span></div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="profile.jpg" alt="Nisha Kini"
+        onerror="this.parentElement.innerHTML='<div class=\'hero-photo-placeholder\'>NK</div>'" />
+    </div>
+    <div class="hero-text">
+      <div class="hero-badge">🦁 Columbia University · MS Business Analytics</div>
+      <h1 class="hero-name">Nisha Prashant Kini</h1>
+      <p class="hero-title">GTM & Growth Strategy · Data Science & Analytics · IEEE Published Author</p>
+      <p class="hero-summary">
+        M.S. in Business Analytics at Columbia University with a B.Tech in Computer Engineering.
+        I bridge data science and go-to-market strategy — from building XGBoost fault-prediction
+        pipelines to driving 120 incremental signups through Meta Ads campaigns.
+        Open to Fall 2026 internships and Spring 2027 full-time roles.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn-outline">View Projects</a>
+        <a href="https://github.com/nki9i" target="_blank" class="btn-outline">GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Experience ── -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">Where I've worked</p>
+    <h2 class="section-title"><span>Experience</span></h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">May 2026 – Present</div>
+          <div class="tl-company-tag">New York, NY</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">Research Analyst Intern · Women's Financial Inclusion</div>
+          <div class="tl-org">Women's World Banking</div>
+          <ul class="tl-bullets">
+            <li>Quantified gender gaps in account ownership, credit uptake, and mobile money adoption across 15+ inclusion programs in South Asia, Southeast Asia, and Africa — informing policy design for WWB's 118M+ beneficiary network.</li>
+            <li>Segmented World Bank Findex survey microdata by income quintile, geography, and age cohort to surface targeted financial access insights for gender-intentional product recommendations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">Jan 2026 – Mar 2026</div>
+          <div class="tl-company-tag">New York, NY</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">Course Assistant · Analytics, OKRs & Performance Metrics</div>
+          <div class="tl-org">Columbia University</div>
+          <ul class="tl-bullets">
+            <li>Coached 60+ graduate students on OKR design, MQL/SQL definitions, funnel metrics, and A/B testing methodology across three assignment cycles.</li>
+            <li>Reviewed KPI frameworks and funnel metric models for statistical validity, strengthening curriculum delivery for a graduate-level analytics course.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">Oct 2025 – Present</div>
+          <div class="tl-company-tag">New York, NY</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">Graduate Admissions Ambassador</div>
+          <div class="tl-org">Columbia University</div>
+          <ul class="tl-bullets">
+            <li>Represented Columbia to prospective graduate students through campus tours and virtual admissions events, supporting recruitment and yield efforts.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">Feb 2026 – Mar 2026</div>
+          <div class="tl-company-tag">Columbia Live Client</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">GTM & Growth Analyst</div>
+          <div class="tl-org">The Groopl · Columbia Live Client Engagement</div>
+          <ul class="tl-bullets">
+            <li>Drove 120 incremental signups and reduced CPA by $14 through outbound Meta Ads campaigns, ICP targeting, and weekly creative iteration — 8,500 impressions in a four-week sprint.</li>
+            <li>Built an automated pipeline dashboard connecting Meta and Google Ads data into Python, Tableau, and Looker Studio, tracking 3,200+ landing page views in real time.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">Jan 2024 – Apr 2024</div>
+          <div class="tl-company-tag">Full-time</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">Full Stack Intern</div>
+          <div class="tl-org">PrepInsta</div>
+          <ul class="tl-bullets">
+            <li>Led a full-stack event management project using React, jQuery, and JSON; improved user engagement by 22% and reduced task completion time by 15%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-meta">
+          <div class="tl-date">Jan 2023 – Apr 2023</div>
+          <div class="tl-company-tag">India</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-role">Product Management Intern</div>
+          <div class="tl-org">Ashwamedh Infotech Pvt Ltd</div>
+          <ul class="tl-bullets">
+            <li>Scoped and shipped a client onboarding product across engineering, design, and business teams; reduced average time-to-delivery from ~15 days to ~12 days.</li>
+            <li>Built a SQL + Tableau CRM dashboard monitoring lead velocity and funnel conversion; cohort analysis identified a demo-stage drop-off and informed a sales re-engagement sequence.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">What I've built</p>
+    <h2 class="section-title"><span>Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">⚡</div>
+        <div class="project-name">Predictive Fault Analytics via Catch22</div>
+        <div class="project-desc">
+          Fault prediction pipeline over a 5,000-column sensor dataset using Catch22 time-series features — reduced dimensionality by 94%. Multi-label XGBoost classifier achieved 91% accuracy, detecting faults a median 6 hours earlier than threshold baselines.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Time Series</span>
+          <span class="tag">Catch22</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🌫️</div>
+        <div class="project-name">Ground-Level AQI Prediction</div>
+        <div class="project-desc">
+          Multimodal AQI prediction fusing street-view and satellite imagery via dual CNN encoders into an RNN — 84% AQI-band accuracy, 12 points above single-modality baselines. Deployed as a Streamlit app returning real-time predictions within 120 seconds.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Deep Learning</span>
+          <span class="tag">CNN + RNN</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag tag-gold">IEEE Published</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🗺️</div>
+        <div class="project-name">Columbia Campus Navigator</div>
+        <div class="project-desc">
+          Two-feature Streamlit app for Columbia's Morningside campus: a walking distance calculator using the Haversine formula across 29 buildings, and a shortest-route optimizer via Dijkstra's algorithm with interactive Folium maps.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">NetworkX</span>
+          <span class="tag">Folium</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-name">SaaS Funnel & Pipeline Drop-off Analysis</div>
+        <div class="project-desc">
+          Modeled a 500-lead B2B SaaS pipeline across 6 cohorts using Python and SQLite. SQL queries for stage-by-stage MQL/SQL conversion identified Demo-to-Close as the bottleneck at 33% conversion, and found referral leads converted at 5× the rate of content leads.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Pandas</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🐼</div>
+        <div class="project-name">Open Source Contribution · pandas</div>
+        <div class="project-desc">
+          Identified a missing regression test for a merged bug fix in pandas-dev/pandas. Wrote a test using pandas' internal utilities and submitted a clean PR that was adopted into the core library.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Open Source</span>
+          <span class="tag">pandas</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">What I work with</p>
+    <h2 class="section-title"><span>Skills</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title">🤖 ML & Modeling</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">XGBoost</span>
+          <span class="skill-pill">RNN / LSTM</span>
+          <span class="skill-pill">CNNs</span>
+          <span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">Feature Engineering</span>
+          <span class="skill-pill">Catch22</span>
+          <span class="skill-pill">Time Series</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🛢️ Data Engineering</div>
+        <div class="skill-pills">
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">ETL Pipelines</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Snowflake</span>
+          <span class="skill-pill">Streamlit</span>
+          <span class="skill-pill">SQLite</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">📈 Visualization & Experimentation</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Tableau</span>
+          <span class="skill-pill">Looker Studio</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">A/B Testing</span>
+          <span class="skill-pill">Cohort Analysis</span>
+          <span class="skill-pill">R</span>
+          <span class="skill-pill">Stata</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🚀 Growth & GTM</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Go-to-Market Strategy</span>
+          <span class="skill-pill">ICP Segmentation</span>
+          <span class="skill-pill">Meta Ads</span>
+          <span class="skill-pill">Google Ads</span>
+          <span class="skill-pill">HubSpot CRM</span>
+          <span class="skill-pill">GA4</span>
+          <span class="skill-pill">CRO</span>
+          <span class="skill-pill">Performance Marketing</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🤝 Research & Qualitative</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Survey Microdata</span>
+          <span class="skill-pill">Customer Discovery</span>
+          <span class="skill-pill">Semi-structured Interviews</span>
+          <span class="skill-pill">Policy Research</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">⚡ AI & Productivity</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Claude</span>
+          <span class="skill-pill">GitHub Copilot</span>
+          <span class="skill-pill">Prompt Engineering</span>
+          <span class="skill-pill">LLM-Assisted Research</span>
+          <span class="skill-pill">Zapier</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Education ── -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">Academic background</p>
+    <h2 class="section-title"><span>Education</span></h2>
+    <div class="edu-grid">
+
+      <div class="edu-card">
+        <div class="edu-icon">🦁</div>
+        <div>
+          <div class="edu-degree">M.S. in Business Analytics</div>
+          <div class="edu-school">Columbia University · New York</div>
+          <div class="edu-dates">Aug 2025 – Dec 2026</div>
+          <div class="edu-courses">Data Analytics · Python Programming · Marketing Strategy · Business Development · Optimization Models · Digital Marketing · Ad Pricing & Growth Strategy</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-icon">💻</div>
+        <div>
+          <div class="edu-degree">B.Tech. in Computer Engineering</div>
+          <div class="edu-school">NMIMS University · Mumbai</div>
+          <div class="edu-dates">Jun 2021 – May 2025</div>
+          <div class="edu-courses">Data Science · Robotic Process Automation · Workflow Optimization · Research Engineering</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Publications ── -->
+<section id="publications">
+  <div class="section-inner">
+    <p class="section-label">IEEE Research</p>
+    <h2 class="section-title"><span>Publications</span></h2>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div>
+          <div class="pub-title">Estimating Ground-Level Air Quality Index from Satellite Imagery: A Data-Driven Approach</div>
+          <div class="pub-venue">IEEE InCoWoCo 2025 · DOI: 10.1109/11407074</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/document/11407074/" target="_blank" class="pub-link">View →</a>
+      </div>
+
+      <div class="pub-card">
+        <div>
+          <div class="pub-title">Advances in Multi-Style and Real-Time Transfer in Neural Networks</div>
+          <div class="pub-venue">IEEE SSITCON 2024 · DOI: 10.1109/10796439</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/document/10796439" target="_blank" class="pub-link">View →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Let's connect</p>
+    <h2 class="section-title"><span>Contact</span></h2>
+    <div class="contact-inner">
+      <div class="contact-text">
+        <p class="contact-desc">
+          Open to Fall 2026 internships and Spring 2027 full-time roles in GTM strategy,
+          growth marketing, data science, and business analytics. Always happy to chat about
+          research, projects, or potential collaborations.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:nk3211@columbia.edu" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            nk3211@columbia.edu
+          </a>
+          <a href="https://linkedin.com/in/nk3211columbia" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            linkedin.com/in/nk3211columbia
+          </a>
+          <a href="https://github.com/nki9i" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            github.com/nki9i
+          </a>
+        </div>
+      </div>
+      <div class="availability-card">
+        <div class="avail-title"><span class="avail-dot"></span>Available for opportunities</div>
+        <div class="avail-item">Fall 2026 Internships</div>
+        <div class="avail-item">Spring 2027 Full-Time Roles</div>
+        <div class="avail-item">GTM · Growth · Data Science</div>
+        <div class="avail-item">Business Analytics</div>
+        <div class="avail-item">New York, NY (& Remote)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>© 2026 Nisha Prashant Kini · Built with Columbia Blue 💙 · <a href="https://github.com/nki9i" target="_blank">github.com/nki9i</a></p>
+</footer>
+
+</body>
+</html>
